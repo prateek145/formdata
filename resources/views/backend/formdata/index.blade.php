@@ -4,16 +4,16 @@
     <div class="pagetitle d-flex justify-content-between">
 
         <div>
-            <h1>Websites</h1>
+            <h1>Formdata</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('backend.home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Websites</li>
+                    <li class="breadcrumb-item active">Formdata</li>
                 </ol>
             </nav>
         </div>
         <div>
-            <a href="{{route('website.create')}}"><button class="btn btn-primary">Add Website</button></a> 
+            <a href="{{ route('website.index') }}"><button class="btn btn-danger">Back</button></a> 
         </div>
 
     </div><!-- End Page Title -->
@@ -30,28 +30,22 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col"> Name</th>
                                     <th scope="col"> Url</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col"> Formaction</th>
+                                    {{-- <th scope="col"> Data</th> --}}
+                                    {{-- <th scope="col">Status</th> --}}
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($websites as $item)
+                                @foreach ($formdataes as $item)
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td> <a href="{{route('formdata.edit', $item->id)}}"> {{$item->name}}</a></td>
                                     <td>{{$item->url}}</td>
-                                    <td>{{strtoupper($item->status)}}</td>
+                                    <td>{{$item->formaction}}</td>
+                                    {{-- <td>{{$item->inputvalue}}</td> --}}
                                     <td class="d-flex justify-content-between">
-                                        <a href="{{route('website.edit', $item->id)}}"><button class="btn btn-sm btn-warning">Edit</button></a>
-                                        <form action="{{ route('website.destroy', $item->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Are You Sure ?')" type="submit"
-                                                value="Delete">
-                                        </form>
+                                        <a href="{{route('formdata.show', $item->id)}}"><button class="btn btn-sm btn-warning">Show</button></a>
                                 </tr>
                                     
                                 @endforeach

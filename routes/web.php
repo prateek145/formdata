@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\HomeController;
 use App\Http\Controllers\backend\WebsiteController;
+use App\Http\Controllers\backend\FormdataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::resource('website', WebsiteController::class);
 
 Route::get('api/fetchformdata', [Homecontroller::class, 'fetchformdata'])->name('fetchformdata');
 Auth::routes();
+
+Route::resource('formdata', FormdataController::class);

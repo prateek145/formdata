@@ -4,13 +4,15 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\AllWebFormdataJs;
+use App\Models\Website;
 
 class HomeController extends Controller
 {
     public function index()
     {
-
-        return view('backend/home');
+        $totalweb = Website::all()->count();
+        return view('backend/home', compact('totalweb'));
     }
 
     public function fetchformdata(){
