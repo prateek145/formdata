@@ -50,7 +50,7 @@
                                     <td>{{$item->created_at->format('d-m-y')}}</td>
                                    
                                     {{-- <td>{{$item->inputvalue}}</td> --}}
-                                    <td class="d-flex justify-content-between">
+                                    <td>
                                         <a href="{{route('formdata.show', $item->id)}}"><button class="btn btn-sm btn-warning">Show</button></a>
                                     </td>  
                                 </tr>
