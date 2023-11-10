@@ -52,6 +52,7 @@
                                     {{-- <td>{{$item->inputvalue}}</td> --}}
                                     <td class="d-flex justify-content-between">
                                         <a href="{{route('formdata.show', $item->id)}}"><button class="btn btn-sm btn-warning">Show</button></a>
+                                    </td>  
                                 </tr>
                                     
                                 @endforeach
