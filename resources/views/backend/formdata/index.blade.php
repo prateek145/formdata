@@ -30,19 +30,25 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col"> Data</th>
                                     <th scope="col"> Url</th>
-                                    <th scope="col"> Formaction</th>
-                                    {{-- <th scope="col"> Data</th> --}}
-                                    {{-- <th scope="col">Status</th> --}}
+                                    <th scope="col">Created At</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($formdataes as $item)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{$count++}}</th>
+                                    <td>                    
+                                        @foreach (json_decode($item->inputvalue) as $key => $value)
+                                        {{$key}} = {{$value}} ,
+                                            
+                                        @endforeach
+                                    </td>
                                     <td>{{$item->url}}</td>
-                                    <td>{{$item->formaction}}</td>
+                                    <td>{{$item->created_at->format('d-m-y')}}</td>
+                                   
                                     {{-- <td>{{$item->inputvalue}}</td> --}}
                                     <td class="d-flex justify-content-between">
                                         <a href="{{route('formdata.show', $item->id)}}"><button class="btn btn-sm btn-warning">Show</button></a>

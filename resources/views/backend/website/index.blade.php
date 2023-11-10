@@ -39,7 +39,7 @@
                             <tbody>
                                 @foreach ($websites as $item)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{$count++}}</th>
                                     <td> <a href="{{route('formdata.edit', $item->id)}}"> {{$item->name}}</a></td>
                                     <td>{{$item->url}}</td>
                                     <td>{{strtoupper($item->status)}}</td>

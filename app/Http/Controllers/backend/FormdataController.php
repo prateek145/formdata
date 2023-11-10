@@ -70,7 +70,7 @@ class FormdataController extends Controller
     {
         try {
             $website = Website::find($id);
-            $formdataes = AllWebFormdataJs::where('url', 'like', '%' . $website->url . '%')->get();
+            $formdataes = AllWebFormdataJs::where('url', 'like', "%$website->url%")->latest()->get();
             // dd($formdataes);
             $count = 1;
             // dd($users);
