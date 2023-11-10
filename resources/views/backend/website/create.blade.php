@@ -37,6 +37,20 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Users/Email</label>
+                                <div class="col-sm-10">
+                                    <select name="user_id" id=""
+                                        class="form-control  @error('user_id') is-invalid @enderror">
+                                        <option value="null">None</option>
+                                        @foreach ($users as $item)
+                                        <option value="{{$item->id}}">{{$item->name}} / {{$item->email}}</option>
+                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Status</label>

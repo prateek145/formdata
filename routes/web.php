@@ -16,13 +16,16 @@ use App\Http\Controllers\backend\FormdataController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+Route::group(['middleware' => ['auth']], function () {
+    // backend ROutes
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('/home', [HomeController::class, 'index'])->name('backend.home');
+    Route::resource('website', WebsiteController::class);
+    Route::resource('formdata', FormdataController::class);
+
 });
-Route::get('/home', [HomeController::class, 'index'])->name('backend.home');
-Route::resource('website', WebsiteController::class);
 
 Route::get('api/fetchformdata', [Homecontroller::class, 'fetchformdata'])->name('fetchformdata');
-Auth::routes();
-
-Route::resource('formdata', FormdataController::class);

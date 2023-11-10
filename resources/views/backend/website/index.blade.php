@@ -12,9 +12,12 @@
                 </ol>
             </nav>
         </div>
+        @if (auth()->user()->role === 'admin')
         <div>
             <a href="{{route('website.create')}}"><button class="btn btn-primary">Add Website</button></a> 
         </div>
+            
+        @endif
 
     </div><!-- End Page Title -->
 
@@ -33,7 +36,10 @@
                                     <th scope="col"> Name</th>
                                     <th scope="col"> Url</th>
                                     <th scope="col">Status</th>
+                                    @if (auth()->user()->role === 'admin')
                                     <th scope="col">Action</th>
+                                        
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +49,8 @@
                                     <td> <a href="{{route('formdata.edit', $item->id)}}"> {{$item->name}}</a></td>
                                     <td>{{$item->url}}</td>
                                     <td>{{strtoupper($item->status)}}</td>
+
+                                    @if (auth()->user()->role === 'admin')
                                     <td class="d-flex justify-content-between">
                                         <a href="{{route('website.edit', $item->id)}}"><button class="btn btn-sm btn-warning">Edit</button></a>
                                         <form action="{{ route('website.destroy', $item->id) }}" method="post">
@@ -52,6 +60,9 @@
                                                 onclick="return confirm('Are You Sure ?')" type="submit"
                                                 value="Delete">
                                         </form>
+                                    </td>
+                                        
+                                    @endif
                                 </tr>
                                     
                                 @endforeach

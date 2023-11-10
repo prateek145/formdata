@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Website;
+use App\Models\User;
 
 class WebsiteController extends Controller
 {
@@ -16,8 +17,16 @@ class WebsiteController extends Controller
     public function index()
     {
         try {
-            $websites = Website::where('status', '!=', 'admin')->latest()->get();
-            $count = 1;
+            if (auth()->user()->role === 'admin') {
+                # code...
+                $websites = Website::where('status', '!=', 'inactive')->latest()->get();
+                $count = 1;
+            } else {
+                # code...
+                $websites = Website::where('status', '!=', 'inactive')->where('user_id', auth()->id())->latest()->get();
+                $count = 1;
+            }
+            
             // dd($users);
             return view('backend.website.index', compact('websites', 'count'));
         } catch (\Exception $e) {
@@ -35,8 +44,9 @@ class WebsiteController extends Controller
     public function create()
     {
         try {
-
-            return view('backend.website.create');
+            $users = User::where('role', 'user')->get();
+            // dd($users);
+            return view('backend.website.create', compact('users'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()
@@ -106,8 +116,10 @@ class WebsiteController extends Controller
     {
         try {
             $website = Website::find($id);
+            $users = User::where('role', 'user')->get();
+
             // dd($users);
-            return view('backend.website.edit', compact('website'));
+            return view('backend.website.edit', compact('website', 'users'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()

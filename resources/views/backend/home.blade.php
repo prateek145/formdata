@@ -12,6 +12,7 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if (auth()->user()->role === 'admin')
     <section class="section dashboard">
         <div class="row">
 
@@ -62,6 +63,8 @@
 
         </div>
     </section>
+        
+    @endif
 
 </main><!-- End #main -->
 
