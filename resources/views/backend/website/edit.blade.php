@@ -45,7 +45,7 @@
                                         class="form-control  @error('user_id') is-invalid @enderror">
                                         <option value="null">None</option>
                                         @foreach ($users as $item)
-                                        <option value="{{$item->id}}" {{$item->id == $item->id ? "selected" : ""}}>{{$item->name}} / {{$item->email}}</option>
+                                        <option value="{{$item->id}}" {{$website->user_id == $item->id ? "selected" : ""}}>{{$item->name}} / {{$item->email}}</option>
                                             
                                         @endforeach
                                     </select>
